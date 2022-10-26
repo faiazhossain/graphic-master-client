@@ -10,13 +10,12 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-10">
+      <div className="grid grid-cols-12 md:grid-flow-col gap-4">
+        <div className="col-span-8 md:col-span-9 lg:col-span-10">
           <Outlet></Outlet>
         </div>
-        <div>
-          <RightSideNav></RightSideNav>
-        </div>
+
+        <RightSideNav className="col-span-4 md:col-span-3 lg:col-span-2 "></RightSideNav>
       </div>
       <Footer></Footer>
     </div>

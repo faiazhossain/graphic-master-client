@@ -9,10 +9,15 @@ const RightSideNav = () => {
       .then((data) => setCourses(data));
   }, []);
   return (
-    <ul className="menu menu-compact lg:menu-normal w-56 p-2 bg-fuchsia-200">
+    <ul className="menu menu-compact lg:menu-normal w-56 p-2 rounded-box">
       {courses.map((course) => (
         <li key={course.id}>
-          <Link to={`/category/${course.id}`}>{course.name}</Link>
+          <Link
+            className="bg-fuchsia-300 mt-2 hover:bg-fuchsia-200 ease-in duration-200"
+            to={`/category/${course.id}`}
+          >
+            {course.name}
+          </Link>
         </li>
       ))}
     </ul>
