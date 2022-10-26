@@ -1,14 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Category from "../Category/Category/Category";
-import RightSideNav from "../Shared/RightSideNav/RightSideNav";
+import { useLoaderData } from "react-router-dom";
+import CourseCard from "../Shared/CourseCard/CourseCard";
 
 const Courses = () => {
+  const allCourses = useLoaderData();
   return (
-    <div>
-      <Outlet></Outlet>
-      <Category></Category>
-      <RightSideNav></RightSideNav>
+    <div className="grid grid-cols-3 gap-4 mt-12">
+      {allCourses.map((course) => (
+        <CourseCard key={course.id} course={course}></CourseCard>
+      ))}
     </div>
   );
 };
