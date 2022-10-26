@@ -10,14 +10,14 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <div className="grid grid-cols-12 md:grid-flow-col gap-4">
-        <div className="col-span-8 md:col-span-9 lg:col-span-10">
+      <div className="flex flex-col-reverse lg:grid lg:grid-cols-12">
+        <div className="col-span-10">
           <Outlet></Outlet>
         </div>
 
-        <RightSideNav className="col-span-4 md:col-span-3 lg:col-span-2 "></RightSideNav>
+        <RightSideNav className="col-span-2"></RightSideNav>
       </div>
-      <Footer></Footer>
+      <Footer className="absolute bottom-0"></Footer>
     </div>
   );
 };
