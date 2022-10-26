@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 const RightSideNav = () => {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
@@ -8,12 +11,13 @@ const RightSideNav = () => {
       .then((res) => res.json())
       .then((data) => setCourses(data));
   }, []);
+
   return (
-    <ul className="flex flex-wrap gap-4 mt-4 ml-4 justify-between lg:grid lg:col-span-2 lg:justify-items-center lg:place-content-center lg:h-80 lg:bg-fuchsia-300 lg:items-center lg:rounded-lg">
+    <ul className="menu ml-4 bg-base-100 w-44 rounded-box">
       {courses.map((course) => (
         <li key={course.id}>
           <Link
-            className="bg-fuchsia-300 p-1 rounded-lg mt-4 hover:bg-fuchsia-200 ease-in duration-200 "
+            className="bg-fuchsia-300 p-3 rounded-lg mt-4 hover:bg-fuchsia-200 ease-in duration-200 "
             to={`/category/${course.id}`}
           >
             {course.name}
