@@ -7,6 +7,7 @@ import Courses from "../../Pages/Courses/Courses";
 import Category from "../../Pages/Category/Category/Category";
 import CheckOut from "../../Pages/CheckOut/CheckOut";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import NotFound from "../../Pages/NotFound/NotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -53,5 +54,9 @@ export const routes = createBrowserRouter([
           fetch(`http://localhost:5000/courses/${params.id}`),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);
