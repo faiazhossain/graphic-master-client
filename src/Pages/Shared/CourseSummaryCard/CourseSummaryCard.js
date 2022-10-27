@@ -11,7 +11,7 @@ const options = {
 
 const CourseSummaryCard = ({ singleCourse }) => {
   console.log(singleCourse);
-  const { picture, name, about, instructor, price } = singleCourse;
+  const { picture, course_id, name, about, instructor, price } = singleCourse;
   return (
     <div className="card bg-base-100 my-10 p-10 shadow-xl">
       <h2 className="lg:text-6xl md:text-4xl text-2xl shadow-lg bg-slate-50 rounded-xl p-2 flex justify-center gap-6">
@@ -52,7 +52,7 @@ const CourseSummaryCard = ({ singleCourse }) => {
               <FaDollarSign className="w-4"></FaDollarSign>
               {price}
             </div>
-            <Link to="/checkout">
+            <Link to={`/checkout/${course_id}`}>
               <button className="btn btn-warning">Get premium access</button>
             </Link>
           </div>

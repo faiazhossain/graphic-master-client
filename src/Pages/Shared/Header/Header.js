@@ -101,13 +101,13 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div
-            className="tooltip tooltip-left tooltip-secondary"
-            data-tip={user?.displayName}
-          >
+          <div>
             <p className="mr-4 p-2 rounded-xl ">
               {user?.uid ? (
-                <div className="flex gap-4">
+                <div
+                  className="tooltip tooltip-left tooltip-secondary flex gap-4"
+                  data-tip={user?.displayName}
+                >
                   <span className="inline">
                     {user?.photoURL ? (
                       <img
