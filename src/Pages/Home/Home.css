@@ -11,3 +11,12 @@
 .home-text {
   font-family: "DM Serif Display", serif;
 }
+
+.dark {
+  background-color: #333;
+  color: rgb(70, 9, 70);
+}
+.light {
+  background-color: #fff;
+  color: #333;
+}

@@ -8,6 +8,8 @@ import Category from "../../Pages/Category/Category/Category";
 import CheckOut from "../../Pages/CheckOut/CheckOut";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import NotFound from "../../Pages/NotFound/NotFound";
+import Blog from "../../Pages/Shared/Blog/Blog";
+import FAQ from "../../Pages/Shared/FAQ/FAQ";
 
 export const routes = createBrowserRouter([
   {
@@ -27,20 +29,33 @@ export const routes = createBrowserRouter([
         element: <Login></Login>,
       },
       {
+        path: "/blog",
+        element: <Blog></Blog>,
+      },
+      {
+        path: "/FAQ",
+        element: <FAQ></FAQ>,
+      },
+      {
         path: "/courses",
         element: <Courses></Courses>,
-        loader: () => fetch("http://localhost:5000/courseInfo"),
+        loader: () =>
+          fetch("https://graphic-master-server.vercel.app/courseInfo"),
       },
       {
         path: "/category/:id",
         element: <Category></Category>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
+          fetch(
+            `https://graphic-master-server.vercel.app/courses/${params.id}`
+          ),
       },
       {
         path: "/courses/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courseInfo/${params.id}`),
+          fetch(
+            `https://graphic-master-server.vercel.app/courseInfo/${params.id}`
+          ),
         element: <Courses></Courses>,
       },
       {
@@ -51,7 +66,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
+          fetch(
+            `https://graphic-master-server.vercel.app/courses/${params.id}`
+          ),
       },
     ],
   },
