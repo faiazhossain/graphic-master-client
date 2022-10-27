@@ -28,7 +28,9 @@ const CourseCard = ({ course }) => {
             )}
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Learn now!</button>
+            <Link to={`/category/${course_id}`}>
+              <button className="btn btn-primary">Show Course!</button>
+            </Link>
           </div>
         </div>
       </div>

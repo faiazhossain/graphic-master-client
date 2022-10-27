@@ -6,12 +6,13 @@ import {
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider/AuthProvider";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = () => {
   const [error, setError] = useState("");
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const { providerLogin } = useContext(AuthContext);
 
@@ -22,7 +23,7 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        navigate("/");
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => console.error(error));
@@ -32,7 +33,7 @@ const Login = () => {
     providerLogin(githubProvider)
       .then((result) => {
         const user = result.user;
-        navigate("/");
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => console.error(error));
@@ -51,7 +52,7 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
