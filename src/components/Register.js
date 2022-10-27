@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -20,9 +22,13 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError("");
         navigate("/login");
       })
-      .catch((e) => console.error);
+      .catch((e) => {
+        console.error(e);
+        setError(e.message);
+      });
   };
 
   return (
@@ -90,6 +96,7 @@ const Register = () => {
                 </button>
               </div>
             </div>
+            <p className="text-red-500">{error}</p>
           </form>
         </div>
       </div>

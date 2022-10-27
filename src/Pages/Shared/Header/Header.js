@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import logo from "./logo.png";
+
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
@@ -11,6 +12,7 @@ const Header = () => {
       .then(() => {})
       .catch((error) => console.error(error));
   };
+
   return (
     <div>
       <div className=""></div>

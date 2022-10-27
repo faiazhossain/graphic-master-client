@@ -1,24 +1,43 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider/AuthProvider";
-import Header from "../Pages/Shared/Header/Header";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
   const { providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        navigate("/");
         console.log(user);
       })
       .catch((error) => console.error(error));
   };
+
+  const handleGithubSignIn = () => {
+    providerLogin(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate("/");
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
   const { signIn } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
@@ -31,10 +50,12 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError("");
         navigate("/");
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
 
@@ -80,6 +101,7 @@ const Login = () => {
                   Register
                 </Link>
               </Link>
+              <p className="text-red-500">{error}</p>
             </form>
             <button
               onClick={handleGoogleSignIn}
@@ -88,7 +110,10 @@ const Login = () => {
               <FaGoogle className="mr-2"></FaGoogle>
               Login with Google
             </button>
-            <button className="btn btn-outline btn-primary text-slate-800 m-2">
+            <button
+              onClick={handleGithubSignIn}
+              className="btn btn-outline btn-primary text-slate-800 m-2"
+            >
               <FaGithub className="mr-2"></FaGithub>
               Login with Github
             </button>
