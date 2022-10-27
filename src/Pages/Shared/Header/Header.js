@@ -5,7 +5,12 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import logo from "./logo.png";
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <div>
       <div className=""></div>
@@ -99,24 +104,45 @@ const Header = () => {
             data-tip={user?.displayName}
           >
             <p className="mr-4 p-2 rounded-xl ">
-              {user?.photoURL ? (
-                <img
-                  className="w-10 rounded-full"
-                  alt=""
-                  src={user.photoURL}
-                ></img>
+              {user?.uid ? (
+                <div className="flex gap-4">
+                  <span className="inline">
+                    {user?.photoURL ? (
+                      <img
+                        className="w-10 rounded-full"
+                        alt=""
+                        src={user.photoURL}
+                      ></img>
+                    ) : (
+                      <FaUser></FaUser>
+                    )}
+                  </span>
+                  <Link
+                    to=""
+                    onClick={handleLogOut}
+                    className="btn btn-outline btn-info btn-xs sm:btn-sm md:btn-md lg:btn-md"
+                  >
+                    Log out
+                  </Link>
+                </div>
               ) : (
-                <FaUser></FaUser>
+                <>
+                  <Link
+                    to="/login"
+                    className="btn btn-outline btn-info btn-xs sm:btn-sm md:btn-md lg:btn-md"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="btn btn-outline btn-info btn-xs sm:btn-sm md:btn-md lg:btn-md ml-4"
+                  >
+                    Register
+                  </Link>
+                </>
               )}
             </p>
           </div>
-
-          <Link to="/login" className="btn">
-            Login
-          </Link>
-          <Link to="/register" className="btn ml-4">
-            Register
-          </Link>
         </div>
       </div>
       {/*  */}

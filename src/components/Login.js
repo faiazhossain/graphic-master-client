@@ -2,11 +2,14 @@ import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider/AuthProvider";
 import Header from "../Pages/Shared/Header/Header";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
+
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
@@ -15,6 +18,7 @@ const Login = () => {
       })
       .catch((error) => console.error(error));
   };
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -45,16 +49,33 @@ const Login = () => {
                   className="input input-bordered"
                   required
                 />
-                <label className="label">
+                {/* <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
                   </a>
-                </label>
+                </label> */}
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+              <Link to="/register" className="label-text-alt link link-hover">
+                Don't have an account?{" "}
+                <Link to="/register" className="text-primary">
+                  Register
+                </Link>
+              </Link>
             </form>
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-outline btn-info m-2"
+            >
+              <FaGoogle className="mr-2"></FaGoogle>
+              Login with Google
+            </button>
+            <button className="btn btn-outline btn-primary text-slate-800 m-2">
+              <FaGithub className="mr-2"></FaGithub>
+              Login with Github
+            </button>
           </div>
         </div>
       </div>
